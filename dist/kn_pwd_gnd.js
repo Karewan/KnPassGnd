@@ -3,7 +3,6 @@
  * Copyright (c) 2023 Florent VIALATTE
  * Released under the MIT license
  */
-
 'use strict';
 const KnPassGnd = function() {
 	const MASKS = {

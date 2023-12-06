@@ -1,5 +1,5 @@
 /**
- * KnPassGnd v1.0.1 (2023-12-06 16:48:03 +0100)
+ * KnPassGnd v1.0.1 (2023-12-06 16:52:49 +0100)
  * Copyright (c) 2023 Florent VIALATTE
  * Released under the MIT license
  */
@@ -49,7 +49,7 @@ const KnPassGnd = function() {
 	],
 	COLORS = [
 		[244, 67, 54],
-		[255, 235, 59],
+		[255, 193, 7],
 		[139, 195, 74]
 	];
 

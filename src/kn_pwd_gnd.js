@@ -43,9 +43,9 @@ const KnPassGnd = function() {
 		}
 	],
 	COLORS = [
-		[229, 57, 53],
-		[255, 179, 0],
-		[124, 179, 66]
+		[244, 67, 54],
+		[255, 235, 59],
+		[139, 195, 74]
 	];
 
 	function colorStrength(fadeFraction, colors) {
@@ -141,7 +141,7 @@ const KnPassGnd = function() {
 		};
 	}
 
-	function generate(len = 18, masks = MASKS.generator) {
+	function generate(len = 18, masks = MASKS.generator, colors = COLORS) {
 		if(len < 5) len = 5;
 
 		let char,
@@ -220,7 +220,7 @@ const KnPassGnd = function() {
 
 		return {
 			password,
-			entropy: entropy(password)
+			entropy: entropy(password, colors)
 		}
 	}
 

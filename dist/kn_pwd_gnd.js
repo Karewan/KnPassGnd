@@ -1,5 +1,5 @@
 /**
- * KnPassGnd v1.0.0 (2023-10-16 22:06:34 +0200)
+ * KnPassGnd v1.0.1 (2023-12-06 16:48:03 +0100)
  * Copyright (c) 2023 Florent VIALATTE
  * Released under the MIT license
  */
@@ -48,9 +48,9 @@ const KnPassGnd = function() {
 		}
 	],
 	COLORS = [
-		[229, 57, 53],
-		[255, 179, 0],
-		[124, 179, 66]
+		[244, 67, 54],
+		[255, 235, 59],
+		[139, 195, 74]
 	];
 
 	function colorStrength(fadeFraction, colors) {
@@ -146,7 +146,7 @@ const KnPassGnd = function() {
 		};
 	}
 
-	function generate(len = 18, masks = MASKS.generator) {
+	function generate(len = 18, masks = MASKS.generator, colors = COLORS) {
 		if(len < 5) len = 5;
 
 		let char,
@@ -225,7 +225,7 @@ const KnPassGnd = function() {
 
 		return {
 			password,
-			entropy: entropy(password)
+			entropy: entropy(password, colors)
 		}
 	}
 

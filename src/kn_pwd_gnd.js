@@ -1,6 +1,7 @@
 'use strict';
 const KnPassGnd = function() {
-	const MASKS = {
+	const VERSION = '1.0.2',
+	MASKS = {
 		entropy: {
 			lower: /[a-z]/,
 			upper: /[A-Z]/,
@@ -225,6 +226,7 @@ const KnPassGnd = function() {
 	}
 
 	return {
+		VERSION,
 		MASKS,
 		STRENGTH,
 		COLORS,

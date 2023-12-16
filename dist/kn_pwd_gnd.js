@@ -1,11 +1,12 @@
 /**
- * KnPassGnd v1.0.1 (2023-12-06 16:52:49 +0100)
+ * KnPassGnd v1.0.2 (2023-12-16 13:59:54 +0100)
  * Copyright (c) 2023 Florent VIALATTE
  * Released under the MIT license
  */
 'use strict';
 const KnPassGnd = function() {
-	const MASKS = {
+	const VERSION = '1.0.2',
+	MASKS = {
 		entropy: {
 			lower: /[a-z]/,
 			upper: /[A-Z]/,
@@ -230,6 +231,7 @@ const KnPassGnd = function() {
 	}
 
 	return {
+		VERSION,
 		MASKS,
 		STRENGTH,
 		COLORS,

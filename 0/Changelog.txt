@@ -1,6 +1,0 @@
-v1.0.1 (06/12/2023):
-- MAJ des couleurs par défaut
-- Possibilité de définir la couleur sur la fonction generate
-
-v1.0.0 (16/10/2023):
-- Initial release

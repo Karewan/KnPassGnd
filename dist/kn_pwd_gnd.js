@@ -1,11 +1,11 @@
 /**
- * KnPassGnd v1.0.2 (2023-12-16 13:59:54 +0100)
+ * KnPassGnd v1.0.3 (2023-12-30 16:29:51 +0100)
  * Copyright (c) 2023 Florent VIALATTE
  * Released under the MIT license
  */
 'use strict';
 const KnPassGnd = function() {
-	const VERSION = '1.0.2',
+	const VERSION = '1.0.3',
 	MASKS = {
 		entropy: {
 			lower: /[a-z]/,
@@ -14,13 +14,18 @@ const KnPassGnd = function() {
 			csymb: /[!"£$€%^&*()]/,
 			osymb: /[`¬\-=_+[\]{};'#:@~,./<>?\\|]/
 		},
-		generator: {
-			lower: 'abcdefghijkmnopqrstuvwxyz',
-			upper: 'ABCDEFGHJKLMNPQRSTUVWXYZ',
-			number: '23456789',
-			csymb: '!&*%',
-			osymb: '-=_+#@;:,.?/'
-		}
+		generator: [
+			// lower
+			'abcdefghijkmnopqrstuvwxyz',
+			// upper
+			'ABCDEFGHJKLMNPQRSTUVWXYZ',
+			// number
+			'23456789',
+			// csymb
+			'!&*%',
+			// osymb
+			'-=_+#@;:,.?/'
+		]
 	},
 	STRENGTH = [
 		{
@@ -155,74 +160,27 @@ const KnPassGnd = function() {
 		numOfUnique,
 		mix = [],
 		dist = largestRemainder([
-			MASKS.generator.lower ? 25 : 0,
-			MASKS.generator.upper ? 25 : 0,
-			MASKS.generator.number ? 20 : 0,
-			MASKS.generator.csymb ? 20 : 0,
-			MASKS.generator.osymb ? 10: 0
+			MASKS.generator[0] ? 25 : 0,
+			MASKS.generator[1] ? 25 : 0,
+			MASKS.generator[2] ? 20 : 0,
+			MASKS.generator[3] ? 20 : 0,
+			MASKS.generator[4] ? 10: 0
 		], len);
 
-		if(dist[0] > 0) {
-			mask = MASKS.generator.lower;
+		dist.forEach((v, k) => {
+			if(!v) return;
+
+			mask = MASKS.generator[k];
 			numOfUnique = mask.length;
 
-			for(; dist[0] > 0; dist[0]--) {
-				char = randomCharFromMask(mask);
-				while(numOfUnique > 0 && mix.includes(char)) char = randomCharFromMask(mask);
+			for(; dist[k] > 0; dist[k]--) {
+				while(numOfUnique > 0 && mix.includes(char = randomCharFromMask(mask)));
 				numOfUnique--;
 				mix.push(char);
 			}
-		}
+		});
 
-		if(dist[1] > 0) {
-			mask = MASKS.generator.upper;
-			numOfUnique = mask.length;
-
-			for(; dist[1] > 0; dist[1]--) {
-				char = randomCharFromMask(mask);
-				while(numOfUnique > 0 && mix.includes(char)) char = randomCharFromMask(mask);
-				numOfUnique--;
-				mix.push(char);
-			}
-		}
-
-		if(dist[2] > 0) {
-			mask = MASKS.generator.number;
-			numOfUnique = mask.length;
-
-			for(; dist[2] > 0; dist[2]--) {
-				char = randomCharFromMask(mask);
-				while(numOfUnique > 0 && mix.includes(char)) char = randomCharFromMask(mask);
-				numOfUnique--;
-				mix.push(char);
-			}
-		}
-
-		if(dist[3] > 0) {
-			mask = MASKS.generator.csymb;
-			numOfUnique = mask.length;
-
-			for(; dist[3] > 0; dist[3]--) {
-				char = randomCharFromMask(mask);
-				while(numOfUnique > 0 && mix.includes(char)) char = randomCharFromMask(mask);
-				numOfUnique--;
-				mix.push(char);
-			}
-		}
-
-		if(dist[4] > 0) {
-			mask = MASKS.generator.osymb;
-			numOfUnique = mask.length;
-
-			for(; dist[4] > 0; dist[4]--) {
-				char = randomCharFromMask(mask);
-				while(numOfUnique > 0 && mix.includes(char)) char = randomCharFromMask(mask);
-				numOfUnique--;
-				mix.push(char);
-			}
-		}
-
-		const password = mix.sort((a, b) => .5 - random()).join('');
+		const password = mix.sort(() => .5 - random()).join('');
 
 		return {
 			password,

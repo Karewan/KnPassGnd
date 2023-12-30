@@ -1,5 +1,5 @@
 /**
- * KnPassGnd v1.0.3 (2023-12-30 16:29:51 +0100)
+ * KnPassGnd v1.0.3 (2023-12-30 17:20:33 +0100)
  * Copyright (c) 2023 Florent VIALATTE
  * Released under the MIT license
  */
@@ -107,10 +107,6 @@ const KnPassGnd = function() {
 		return seatDistribution.sort((a, b) => (a.index - b.index)).map(a => a.seats);
 	}
 
-	function randomCharFromMask(mask) {
-		return mask[Math.floor(random() * mask.length)];
-	}
-
 	function entropy(str, colors = COLORS) {
 		let len = str.length,
 		chars = 0,
@@ -174,7 +170,7 @@ const KnPassGnd = function() {
 			numOfUnique = mask.length;
 
 			for(; dist[k] > 0; dist[k]--) {
-				while(numOfUnique > 0 && mix.includes(char = randomCharFromMask(mask)));
+				while(numOfUnique > 0 && mix.includes(char = mask[Math.floor(random() * mask.length)]));
 				numOfUnique--;
 				mix.push(char);
 			}

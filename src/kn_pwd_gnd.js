@@ -102,10 +102,6 @@ const KnPassGnd = function() {
 		return seatDistribution.sort((a, b) => (a.index - b.index)).map(a => a.seats);
 	}
 
-	function randomCharFromMask(mask) {
-		return mask[Math.floor(random() * mask.length)];
-	}
-
 	function entropy(str, colors = COLORS) {
 		let len = str.length,
 		chars = 0,
@@ -169,7 +165,7 @@ const KnPassGnd = function() {
 			numOfUnique = mask.length;
 
 			for(; dist[k] > 0; dist[k]--) {
-				while(numOfUnique > 0 && mix.includes(char = randomCharFromMask(mask)));
+				while(numOfUnique > 0 && mix.includes(char = mask[Math.floor(random() * mask.length)]));
 				numOfUnique--;
 				mix.push(char);
 			}

@@ -20,7 +20,7 @@ const terser_options = {
 },
 header_txt= `
 	KnPassGnd v<%= pkg.version %> (<%= moment().format('YYYY-MM-DD HH:mm:ss ZZ') %>)
-	Copyright (c) 2023 <%= pkg.author %>
+	Copyright (c) 2023 - 2024 <%= pkg.author %>
 	Released under the MIT license
 `;
 

@@ -1,6 +1,10 @@
 KnPassGnd Changelog
 ==========
 
+v1.0.4 (2024-10-21):
+----------------------------
+* Fix generate arg masks usage
+
 v1.0.3 (2023-12-30):
 ----------------------------
 * Reduced code size (-19%)

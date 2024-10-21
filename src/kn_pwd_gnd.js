@@ -1,6 +1,6 @@
 'use strict';
 const KnPassGnd = function() {
-	const VERSION = '1.0.3',
+	const VERSION = '1.0.4',
 	MASKS = {
 		entropy: {
 			lower: /[a-z]/,
@@ -151,17 +151,17 @@ const KnPassGnd = function() {
 		numOfUnique,
 		mix = [],
 		dist = largestRemainder([
-			MASKS.generator[0] ? 25 : 0,
-			MASKS.generator[1] ? 25 : 0,
-			MASKS.generator[2] ? 20 : 0,
-			MASKS.generator[3] ? 20 : 0,
-			MASKS.generator[4] ? 10: 0
+			masks[0] ? 25 : 0,
+			masks[1] ? 25 : 0,
+			masks[2] ? 20 : 0,
+			masks[3] ? 20 : 0,
+			masks[4] ? 10: 0
 		], len);
 
 		dist.forEach((v, k) => {
 			if(!v) return;
 
-			mask = MASKS.generator[k];
+			mask = masks[k];
 			numOfUnique = mask.length;
 
 			for(; dist[k] > 0; dist[k]--) {

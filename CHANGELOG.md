@@ -1,6 +1,11 @@
 KnPassGnd Changelog
 ==========
 
+v2.0.1 (2026-09-23):
+----------------------------
+* Add npm and pnpm installation instructions to the README.
+* Add GitHub repository, homepage, and issue tracker links to the package metadata and README.
+
 v2.0.0 (2026-09-23):
 ----------------------------
 * Rewrite the library in strict TypeScript with Vite-built ESM, CommonJS, and browser bundles plus declarations.

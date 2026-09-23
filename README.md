@@ -2,6 +2,8 @@
 
 A small, browser-first TypeScript library for generating readable passwords with a cryptographically secure random source and calculable entropy.
 
+[Source code and issues](https://github.com/Karewan/KnPassGnd)
+
 ## Install
 
 Install the published package with your preferred package manager:

@@ -3,6 +3,12 @@
 	"author": "Florent VIALATTE",
 	"version": "2.0.0",
 	"description": "Readable, cryptographically secure password generation with exact entropy",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Karewan/KnPassGnd.git"
+	},
+	"homepage": "https://github.com/Karewan/KnPassGnd#readme",
+	"bugs": "https://github.com/Karewan/KnPassGnd/issues",
 	"license": "MIT",
 	"type": "module",
 	"main": "./dist/index.cjs",

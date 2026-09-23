@@ -41,11 +41,11 @@ export interface PasswordPolicyOptions {
 	minLength?: number;
 	/** Maximum accepted length, from minLength to 256. Defaults to 256. */
 	maxLength?: number;
-	/** Minimum number of ASCII a-z characters. Defaults to 0. */
+	/** Minimum number of ASCII a-z characters. Defaults to 1. */
 	lowercase?: number;
-	/** Minimum number of ASCII A-Z characters. Defaults to 0. */
+	/** Minimum number of ASCII A-Z characters. Defaults to 1. */
 	uppercase?: number;
-	/** Minimum number of ASCII 0-9 characters. Defaults to 0. */
+	/** Minimum number of ASCII 0-9 characters. Defaults to 1. */
 	digits?: number;
 	/** Minimum number of Unicode punctuation or symbol characters. Defaults to 0. */
 	special?: number;
@@ -313,9 +313,9 @@ export function validatePassword(
 		throw new RangeError(`Choose policy lengths between 1 and ${MAX_LENGTH}.`);
 	}
 	const required: PasswordCharacterCounts = {
-		lowercase: policy.lowercase ?? 0,
-		uppercase: policy.uppercase ?? 0,
-		digits: policy.digits ?? 0,
+		lowercase: policy.lowercase ?? 1,
+		uppercase: policy.uppercase ?? 1,
+		digits: policy.digits ?? 1,
 		special: policy.special ?? 0,
 	};
 	if (

@@ -153,7 +153,8 @@ test("manual password validation checks configurable length and category minima"
 		issues: ["tooLong", "tooFewUppercase", "tooFewDigits", "tooFewSpecial"],
 	});
 	assert.equal(tooLong.estimatedStrength, "veryWeak");
-	assert.equal(validatePassword("a".repeat(24)).valid, true);
+	assert.deepEqual(validatePassword("a".repeat(24)).issues, ["tooFewUppercase", "tooFewDigits"]);
+	assert.equal(validatePassword(`${"a".repeat(22)}A2`).valid, true);
 	assert.equal(validatePassword("a".repeat(23)).issues.includes("tooShort"), true);
 	assert.deepEqual(validatePassword("é 🔐", { minLength: 3, maxLength: 10, special: 1 }).counts, {
 		lowercase: 0,
@@ -162,7 +163,7 @@ test("manual password validation checks configurable length and category minima"
 		special: 1,
 	});
 	const { password } = generatePassword();
-	assert.equal(validatePassword(password).valid, true);
+	assert.equal(validatePassword(password).valid, /[a-z]/.test(password) && /[A-Z]/.test(password) && /[0-9]/.test(password));
 	for (let index = 0; index < 100; index++) {
 		const generated = generatePassword();
 		assert.ok(Math.abs(validatePassword(generated.password).estimatedBits - generated.bits) < 1e-10);
@@ -198,9 +199,9 @@ test("manual estimates match generated entropy with an optional generator-set hi
 	const unrestricted = validatePassword("🔐".repeat(24), {
 		generatorCharacterSets: ["common"],
 	});
-	assert.equal(unrestricted.valid, true);
+	assert.deepEqual(unrestricted.issues, ["tooFewLowercase", "tooFewUppercase", "tooFewDigits"]);
 	assert.equal(unrestricted.counts.special, 24);
-	assert.equal(validatePassword("!&*%2", { minLength: 1, generatorCharacterSets: ["common"] }).valid, true);
+	assert.equal(validatePassword("!&*%2", { minLength: 1, lowercase: 0, uppercase: 0, generatorCharacterSets: ["common"] }).valid, true);
 });
 
 test("one out-of-set substitution does not cause a large estimate jump", () => {

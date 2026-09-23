@@ -1,6 +1,10 @@
 KnPassGnd Changelog
 ==========
 
+v2.0.2 (2026-09-23):
+----------------------------
+* Default manual-password validation to at least one lowercase letter, one uppercase letter, and one digit, matching the generator's default selected character sets; special remains optional.
+
 v2.0.1 (2026-09-23):
 ----------------------------
 * Add npm and pnpm installation instructions to the README.

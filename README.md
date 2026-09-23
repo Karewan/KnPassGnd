@@ -2,7 +2,19 @@
 
 A small, browser-first TypeScript library for generating readable passwords with a cryptographically secure random source and calculable entropy.
 
-## Install and build
+## Install
+
+Install the published package with your preferred package manager:
+
+```sh
+pnpm add kn-pwd-gnd
+```
+
+```sh
+npm install kn-pwd-gnd
+```
+
+## Build from source
 
 ```sh
 pnpm install
